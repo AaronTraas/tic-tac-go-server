@@ -13,3 +13,6 @@
 
 # binary output on *NIX machines
 tic-tac-go-server
+
+# coverage profile
+coverage.out
