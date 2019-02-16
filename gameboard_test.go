@@ -28,8 +28,20 @@ func TestRotate(t *testing.T) {
 
 func TestEq(t *testing.T) {
 
-	if !board.Equals(&board_rotcw) {
-		t.Error("Rotation clockwise once failed")
+	if !board.Equals(&board) {
+		t.Error("Board should be equal to itself")
 	}
 
+	if !board.Equals(&board_rotcw) {
+		t.Error("Board should be equal to its rotational equvalent")
+	}
+
+	if !board.Equals(board.Rotate()) {
+		t.Error("Board should be equal to its rotational equvalent")
+	}
+
+    var board_empty GameBoard
+	if board.Equals(&board_empty) {
+		t.Error("Board should not be equal to empty board")
+	}
 }
