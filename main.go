@@ -19,18 +19,6 @@ type Parameter struct {
     Description string  `json:"description,omitempty"`
 }
 
-const SIDE = 3
-
-type GameTileState string
-
-const (
-    State_Empty GameTileState = ""
-    State_X     GameTileState = "X"
-    State_O     GameTileState = "O"
-)
-
-type GameBoardState [SIDE][SIDE]GameTileState
-
 var endpoints []Endpoint
 
 func Default(w http.ResponseWriter, r *http.Request) {
@@ -38,7 +26,7 @@ func Default(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetGame(w http.ResponseWriter, r *http.Request) {
-    var board GameBoardState
+    var board GameBoard
     json.NewEncoder(w).Encode(board)
 }
 
