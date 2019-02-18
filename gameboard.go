@@ -25,6 +25,26 @@ func (board *GameBoard) Rotate() *GameBoard {
 	return &newBoard
 }
 
+func (board *GameBoard) FlipH() *GameBoard {
+	var newBoard = GameBoard{
+		{board[0][2], board[0][1], board[0][0]},
+		{board[1][2], board[1][1], board[1][0]},
+		{board[2][2], board[2][1], board[2][0]},
+	}
+
+	return &newBoard
+}
+
+func (board *GameBoard) FlipV() *GameBoard {
+	var newBoard = GameBoard{
+		{board[2][0], board[2][1], board[2][2]},
+		{board[1][0], board[1][1], board[1][2]},
+		{board[0][0], board[0][1], board[0][2]},
+	}
+
+	return &newBoard
+}
+
 /*
  * Tests the equivalence of two game boards. Game boards that are
  * rotational transforms of each other are deemed equivalent
