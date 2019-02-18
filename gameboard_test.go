@@ -5,6 +5,8 @@ import (
 	"testing"
 )
 
+var emptyBoard GameBoard
+
 var board GameBoard = GameBoard{
 	{X, X, O},
 	{O, O, X},
@@ -88,5 +90,50 @@ func TestEq(t *testing.T) {
 	var board_empty GameBoard
 	if board.Equals(&board_empty) {
 		t.Error("Board should not be equal to empty board")
+	}
+}
+
+func TestSerialize(t *testing.T) {
+	if emptyBoard.Serialize() != "EEEEEEEEE" {
+		t.Error("Empty board should serialize to 'EEEEEEEEE'")
+	}
+
+	if board.Serialize() != "XXOOOXXOO" {
+		t.Error("Board serialization result incorrect")
+	}
+}
+
+func TestDeserialize(t *testing.T) {
+	var newBoard GameBoard
+
+	newEmptyBoard, err := newBoard.Deserialize("EEEEEEEEE")
+	if err != nil {
+		t.Error("'EEEEEEEEE' is valid serialized board string")
+	}
+	if *newEmptyBoard != emptyBoard {
+		t.Error("'EEEEEEEEE' should validly deserialize")
+	}
+
+	newFullBoard, err := newBoard.Deserialize("XXOOOXXOO")
+	if err != nil {
+		t.Error("'XXOOOXXOO' is valid serialized board string")
+	}
+	if *newFullBoard != board {
+		t.Error("'XXOOOXXOO' should validly deserialize")
+	}
+
+	_, err = newBoard.Deserialize("XXXO OXXX")
+	if err == nil {
+		t.Error("'XXXO OXXX' is not a valid serialized board string")
+	}
+
+	_, err = newBoard.Deserialize("X")
+	if err == nil {
+		t.Error("'X' is not a valid serialized board string")
+	}
+
+	_, err = newBoard.Deserialize("XXXXXXXXXXXXXXXXXXXXXXXXX")
+	if err == nil {
+		t.Error("'XXXXXXXXXXXXXXXXXXXXXXXXX' is not a valid serialized board string")
 	}
 }

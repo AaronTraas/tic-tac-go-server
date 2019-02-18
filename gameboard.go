@@ -1,5 +1,9 @@
 package tictacgo
 
+import (
+	"errors"
+)
+
 const GAME_BOARD_SIZE = 3
 
 type GameTile string
@@ -74,4 +78,46 @@ func (board1 *GameBoard) Equals(board2 *GameBoard) bool {
 		}
 	}
 	return false
+}
+
+func (board *GameBoard) Serialize() string {
+	var s string = ""
+	for _, row := range board {
+		for _, col := range row {
+			switch col {
+			case Empty:
+				s += "E"
+			case X:
+				s += "X"
+			case O:
+				s += "O"
+			}
+		}
+	}
+	return s
+}
+
+func (board *GameBoard) Deserialize(s string) (*GameBoard, error) {
+	if len(s) != GAME_BOARD_SIZE*GAME_BOARD_SIZE {
+		return nil, errors.New("String " + s + " cannot be deserialized into GameBoard.")
+	}
+
+	ptr := 0
+	for row := 0; row < GAME_BOARD_SIZE; row++ {
+		for col := 0; col < GAME_BOARD_SIZE; col++ {
+			c := string(s[ptr])
+			ptr++
+			switch c {
+			case "E":
+				board[row][col] = Empty
+			case "X":
+				board[row][col] = X
+			case "O":
+				board[row][col] = O
+			default:
+				return nil, errors.New("String " + s + " cannot be deserialized into GameBoard.")
+			}
+		}
+	}
+	return board, nil
 }

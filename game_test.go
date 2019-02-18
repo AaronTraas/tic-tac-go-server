@@ -5,7 +5,6 @@ import (
 	"testing"
 )
 
-var emptyBoard GameBoard
 var firstMoveBoard GameBoard = GameBoard{
 	{Empty, Empty, Empty},
 	{Empty, X, Empty},
