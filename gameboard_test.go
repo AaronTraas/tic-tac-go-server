@@ -1,6 +1,7 @@
-package main
+package tictacgo_test
 
 import (
+	. "github.com/AaronTraas/tic-tac-go-server"
 	"testing"
 )
 

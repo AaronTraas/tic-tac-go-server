@@ -1,4 +1,4 @@
-package main
+package tictacgo
 
 import (
 	"encoding/json"
@@ -25,11 +25,6 @@ func Default(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(endpoints)
 }
 
-func GetGame(w http.ResponseWriter, r *http.Request) {
-	var board GameBoard
-	json.NewEncoder(w).Encode(board)
-}
-
 // our main function
 func main() {
 	endpoints = append(endpoints, Endpoint{
@@ -37,15 +32,15 @@ func main() {
 		Method:      "GET",
 		Description: "This endpoint. Lists all of the possible endpoints."})
 
-	endpoints = append(endpoints, Endpoint{
-		Path:   "/game",
-		Method: "GET",
-		Parameters: []Parameter{
-			Parameter{Name: "game-id"}},
-		Description: "This endpoint. Lists all of the possible endpoints."})
-
+	/*
+	   endpoints = append(endpoints, Endpoint{
+	   	Path:   "/game",
+	   	Method: "GET",
+	   	Parameters: []Parameter{
+	   		Parameter{Name: "game-id"}},
+	   	Description: "This endpoint. Lists all of the possible endpoints."})
+	*/
 	router := mux.NewRouter()
 	router.HandleFunc("/", Default).Methods("GET")
-	router.HandleFunc("/game", GetGame).Methods("GET")
 	log.Fatal(http.ListenAndServe(":8000", router))
 }

@@ -1,6 +1,6 @@
-package main
+package tictacgo
 
-const SIDE = 3
+const GAME_BOARD_SIZE = 3
 
 type GameTile string
 
@@ -10,7 +10,7 @@ const (
 	O     GameTile = "O"
 )
 
-type GameBoard [SIDE][SIDE]GameTile
+type GameBoard [GAME_BOARD_SIZE][GAME_BOARD_SIZE]GameTile
 
 /**
  * Rotates a board clockwise
