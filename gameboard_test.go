@@ -65,11 +65,23 @@ func TestEq(t *testing.T) {
 	}
 
 	if !board.Equals(&board_rotcw) {
-		t.Error("Board should be equal to its rotational equvalent")
+		t.Error("Board should be equal to its rotational eqiuvalent")
 	}
 
 	if !board.Equals(board.Rotate()) {
-		t.Error("Board should be equal to its rotational equvalent")
+		t.Error("Board should be equal to its rotational eqiuvalent")
+	}
+
+	if !board.Equals(board.FlipH()) {
+		t.Error("Board should be equal to its horizontal reflection")
+	}
+
+	if !board.Equals(board.FlipV()) {
+		t.Error("Board should be equal to its vertical reflection")
+	}
+
+	if !board.Equals(board.Rotate().Rotate().FlipH().FlipV()) {
+		t.Error("Board should be equal to its rotational and reflectional eqiuvalent")
 	}
 
 	var board_empty GameBoard

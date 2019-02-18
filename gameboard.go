@@ -25,6 +25,9 @@ func (board *GameBoard) Rotate() *GameBoard {
 	return &newBoard
 }
 
+/**
+ * Flip board horizontally
+ */
 func (board *GameBoard) FlipH() *GameBoard {
 	var newBoard = GameBoard{
 		{board[0][2], board[0][1], board[0][0]},
@@ -35,6 +38,9 @@ func (board *GameBoard) FlipH() *GameBoard {
 	return &newBoard
 }
 
+/**
+ * Flip board vertically
+ */
 func (board *GameBoard) FlipV() *GameBoard {
 	var newBoard = GameBoard{
 		{board[2][0], board[2][1], board[2][2]},
@@ -47,15 +53,25 @@ func (board *GameBoard) FlipV() *GameBoard {
 
 /*
  * Tests the equivalence of two game boards. Game boards that are
- * rotational transforms of each other are deemed equivalent
+ * rotation/reflection transforms of each other are deemed equivalent
  */
 func (board1 *GameBoard) Equals(board2 *GameBoard) bool {
-	if (*board1 == *board2) ||
-		(*board1 == *board2.Rotate()) ||
-		(*board1 == *board2.Rotate().Rotate()) ||
-		(*board1 == *board2.Rotate().Rotate().Rotate()) {
-		return true
-	} else {
-		return false
+	board_rot := board2
+
+	var board_transforms []GameBoard
+
+	for i := 0; i < 4; i++ {
+		board_transforms = append(board_transforms, *board_rot)
+		board_transforms = append(board_transforms, *board_rot.FlipH())
+		board_transforms = append(board_transforms, *board_rot.FlipV())
+		board_transforms = append(board_transforms, *board_rot.FlipH().FlipV())
+		board_rot = board_rot.Rotate()
 	}
+
+	for _, board := range board_transforms {
+		if *board1 == board {
+			return true
+		}
+	}
+	return false
 }
