@@ -1,4 +1,4 @@
-# tick-tack-go-server
+# tic-tac-go-server
 
 A Go-based tic-tac-toe AI server that uses machine learning, and interfaces as a RESTful API
 

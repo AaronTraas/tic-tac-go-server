@@ -5,9 +5,9 @@ const SIDE = 3
 type GameTile string
 
 const (
-    Empty GameTile = ""
-    X     GameTile = "X"
-    O     GameTile = "O"
+	Empty GameTile = ""
+	X     GameTile = "X"
+	O     GameTile = "O"
 )
 
 type GameBoard [SIDE][SIDE]GameTile
@@ -31,12 +31,11 @@ func (board *GameBoard) Rotate() *GameBoard {
  */
 func (board1 *GameBoard) Equals(board2 *GameBoard) bool {
 	if (*board1 == *board2) ||
-	   (*board1 == *board2.Rotate()) ||
-	   (*board1 == *board2.Rotate().Rotate()) ||
-	   (*board1 == *board2.Rotate().Rotate().Rotate()) {
-	   	return true
+		(*board1 == *board2.Rotate()) ||
+		(*board1 == *board2.Rotate().Rotate()) ||
+		(*board1 == *board2.Rotate().Rotate().Rotate()) {
+		return true
 	} else {
 		return false
 	}
 }
-

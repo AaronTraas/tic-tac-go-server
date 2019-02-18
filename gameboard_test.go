@@ -40,7 +40,7 @@ func TestEq(t *testing.T) {
 		t.Error("Board should be equal to its rotational equvalent")
 	}
 
-    var board_empty GameBoard
+	var board_empty GameBoard
 	if board.Equals(&board_empty) {
 		t.Error("Board should not be equal to empty board")
 	}
