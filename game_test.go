@@ -40,31 +40,31 @@ var gameInProgress TicTacToeGame = TicTacToeGame{
 }
 
 func TestIsLegalMove(t *testing.T) {
-	if partial_board.IsLegalMove(GameMove{Row: 0, Col: 0, MoveType: X}) != true {
+	if !partial_board.IsLegalMove(GameMove{Row: 0, Col: 0, MoveType: X}) {
 		t.Error("Empty space should be legal")
 	}
 
-	if partial_board.IsLegalMove(GameMove{Row: 1, Col: 0, MoveType: X}) != false {
+	if partial_board.IsLegalMove(GameMove{Row: 1, Col: 0, MoveType: X}) {
 		t.Error("Filled space should not be legal")
 	}
 
-	if partial_board.IsLegalMove(GameMove{Row: -1, Col: 0, MoveType: X}) != false {
+	if partial_board.IsLegalMove(GameMove{Row: -1, Col: 0, MoveType: X}) {
 		t.Error("Out of range row should not be legal")
 	}
 
-	if partial_board.IsLegalMove(GameMove{Row: GAME_BOARD_SIZE, Col: 0, MoveType: X}) != false {
+	if partial_board.IsLegalMove(GameMove{Row: GAME_BOARD_SIZE, Col: 0, MoveType: X}) {
 		t.Error("Out of range row should not be legal")
 	}
 
-	if partial_board.IsLegalMove(GameMove{Row: 0, Col: -1, MoveType: X}) != false {
+	if partial_board.IsLegalMove(GameMove{Row: 0, Col: -1, MoveType: X}) {
 		t.Error("Out of range column should not be legal")
 	}
 
-	if partial_board.IsLegalMove(GameMove{Row: 0, Col: GAME_BOARD_SIZE, MoveType: X}) != false {
+	if partial_board.IsLegalMove(GameMove{Row: 0, Col: GAME_BOARD_SIZE, MoveType: X}) {
 		t.Error("Out of range column should not be legal")
 	}
 
-	if partial_board.IsLegalMove(GameMove{Row: 0, Col: 0}) != false {
+	if partial_board.IsLegalMove(GameMove{Row: 0, Col: 0}) {
 		t.Error("Empty move type is not legal")
 	}
 }
